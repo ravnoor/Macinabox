@@ -13,6 +13,10 @@ RUN apk add \
     apk add openssh-askpass --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
     && rm -rf /var/cache/apk/* /tmp/* /tmp/.[!.]*
 
+RUN mkdir -p /usr/local/share/icons/hicolor/ && \
+    mkdir -p /usr/local/share/glib-2.0/schemas/ && \
+    ln -s /usr/share /usr/local/share
+
 # Download virt-manager from git
 RUN git clone https://github.com/virt-manager/virt-manager.git
 
