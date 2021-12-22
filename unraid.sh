@@ -2,7 +2,7 @@
 #
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# #  unraid.sh - Script used by Macinabox docker conatainer to install a KVM virtual machine of different versions of macOS    # # 
+# #  unraid.sh - Script used by Macinabox docker container to install a KVM virtual machine of different versions of macOS    # # 
 # #  by - SpaceinvaderOne                                                                                                   # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -185,6 +185,7 @@ fi
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # #  Pull High sierra if not already downloaded   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
 pullhsierra() {
 
 	if [ ! -e /isos/HighSierra-install.img ] ; then
@@ -203,6 +204,7 @@ fi
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # #  Pull Mojave if not already downloaded      # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
 pullmojave() {
 
 	if [ ! -e /isos/Mojave-install.img ] ; then
@@ -222,61 +224,61 @@ fi
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # #  Pull Catalina if not already downloaded    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-	pullcatalina() {
 
-		if [ ! -e /isos/Catalina-install.img ] ; then
-			echo "I am going to download the Catalina recovery media. Please be patient!"
-		    echo "."
-		    echo "."
-	    "/Macinabox/tools/FetchMacOS/fetch.sh" -v 10.15 -k BaseSystem || exit 1;
-	else
-		echo "Media already exists. I have already downloaded the Catalina install media before"
-	    echo "."
-	    echo "."
+pullcatalina() {
 
-	fi
-	}
+	if [ ! -e /isos/Catalina-install.img ] ; then
+		echo "I am going to download the Catalina recovery media. Please be patient!"
+		echo "."
+		echo "."
+	"/Macinabox/tools/FetchMacOS/fetch.sh" -v 10.15 -k BaseSystem || exit 1;
+else
+	echo "Media already exists. I have already downloaded the Catalina install media before"
+	echo "."
+	echo "."
+
+fi
+}
 	
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # #  Pull BigSur if not already downloaded    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 	
-	
-	pullbigsur() {
 
-		if [ ! -e /isos/BigSur-install.img ] ; then
-			echo "I am going to download the BigSur recovery media. Please be patient!"
-		    echo "."
-		    echo "."
-	    "/Macinabox/tools/FetchMacOS/fetch.sh" -v 10.16 -c PublicRelease -p 002-23589 || exit 1;
-		
-	else
-		echo "Media already exists. I have already downloaded the Big Sur install media before"
-	    echo "."
-	    echo "."
+pullbigsur() {
 
-	fi
+	if [ ! -e /isos/BigSur-install.img ] ; then
+		echo "I am going to download the BigSur recovery media. Please be patient!"
+		echo "."
+		echo "."
+	"/Macinabox/tools/FetchMacOS/fetch.sh" -v 10.16 -c PublicRelease -p 002-23589 || exit 1;
 	
-	}
+else
+	echo "Media already exists. I have already downloaded the Big Sur install media before"
+	echo "."
+	echo "."
+
+fi
+
+}
 	
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # #  Extract BigSur from InstallAssistant.pkg if using script1    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-			
-	
-	extractbigsur() {
-		if [ "$method" = "method 1" ] ; then
-		echo " Nothing to extract using method 1"
-		else
-		7z e -txar -o/Macinabox/tools/FetchMacOS/BaseSystem/ /Macinabox/tools/FetchMacOS/BaseSystem/InstallAssistant.pkg '*.dmg' 
-		rm /Macinabox/tools/FetchMacOS/BaseSystem/InstallAssistant.pkg
-		7z e -tdmg -o/Macinabox/tools/FetchMacOS/BaseSystem/ /Macinabox/tools/FetchMacOS/BaseSystem/SharedSupport.dmg 5.hfs
-		rm /Macinabox/tools/FetchMacOS/BaseSystem/SharedSupport.dmg
-		mkdir /Macinabox/tools/FetchMacOS/BaseSystem/temp
-		mount -t hfsplus -oloop /Macinabox/tools/FetchMacOS/BaseSystem/*.hfs /Macinabox/tools/FetchMacOS/BaseSystem/temp
-		7z e -o/Macinabox/tools/FetchMacOS/BaseSystem/ /Macinabox/tools/FetchMacOS/BaseSystem/temp/*MacSoftwareUpdate/*.zip AssetData/Restore/Base*.dmg
-		umount /Macinabox/tools/FetchMacOS/BaseSystem/temp && rm -r /Macinabox/tools/FetchMacOS/BaseSystem/temp && rm /Macinabox/tools/FetchMacOS/BaseSystem/*.hfs
-		fi		
-	}		
+
+extractbigsur() {
+	if [ "$method" = "method 1" ] ; then
+	echo " Nothing to extract using method 1"
+	else
+	7z e -txar -o/Macinabox/tools/FetchMacOS/BaseSystem/ /Macinabox/tools/FetchMacOS/BaseSystem/InstallAssistant.pkg '*.dmg' 
+	rm /Macinabox/tools/FetchMacOS/BaseSystem/InstallAssistant.pkg
+	7z e -tdmg -o/Macinabox/tools/FetchMacOS/BaseSystem/ /Macinabox/tools/FetchMacOS/BaseSystem/SharedSupport.dmg 5.hfs
+	rm /Macinabox/tools/FetchMacOS/BaseSystem/SharedSupport.dmg
+	mkdir /Macinabox/tools/FetchMacOS/BaseSystem/temp
+	mount -t hfsplus -oloop /Macinabox/tools/FetchMacOS/BaseSystem/*.hfs /Macinabox/tools/FetchMacOS/BaseSystem/temp
+	7z e -o/Macinabox/tools/FetchMacOS/BaseSystem/ /Macinabox/tools/FetchMacOS/BaseSystem/temp/*MacSoftwareUpdate/*.zip AssetData/Restore/Base*.dmg
+	umount /Macinabox/tools/FetchMacOS/BaseSystem/temp && rm -r /Macinabox/tools/FetchMacOS/BaseSystem/temp && rm /Macinabox/tools/FetchMacOS/BaseSystem/*.hfs
+	fi		
+}		
 						
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # #  Print result Function - Prints info where all files went                                                     # # # # # # # # # # # # # # # # #  
@@ -398,5 +400,3 @@ else
 
 fi
 exit
-			
-
